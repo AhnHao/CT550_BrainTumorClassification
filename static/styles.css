@@ -1,0 +1,209 @@
+/* static/styles.css - replace file content with this */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+:root {
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #0b6cff;
+  --accent-2: #0b9eff;
+  --success: #1f8a70;
+  --shadow: 0 8px 24px rgba(11, 108, 255, 0.06);
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #111827;
+}
+.container {
+  max-width: 980px;
+  margin: 36px auto;
+  padding: 20px;
+}
+
+/* Card */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+  margin-bottom: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.03);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+.header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Form */
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 14px 0;
+  flex-wrap: wrap;
+}
+.form-row label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #111827;
+  min-width: 100px;
+}
+.form-controls {
+  flex: 1;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* File input - nicer */
+.file-input {
+  position: relative;
+  display: inline-block;
+}
+.file-input input[type="file"] {
+  display: none;
+}
+.btn {
+  background: linear-gradient(180deg, var(--accent), var(--accent-2));
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(11, 108, 255, 0.12);
+  text-decoration: none;
+}
+.btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(11, 108, 255, 0.12);
+  box-shadow: none;
+}
+
+/* Select */
+.select {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: white;
+  font-size: 14px;
+  min-width: 180px;
+}
+
+/* Preview */
+#preview {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 12px;
+}
+#preview img {
+  max-width: 220px;
+  max-height: 220px;
+  border-radius: 8px;
+  object-fit: contain;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+/* Result layout */
+.row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.col {
+  flex: 1 1 300px;
+  min-width: 260px;
+}
+
+/* Result box */
+.result-card {
+  padding: 16px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.04);
+}
+.result-card h3 {
+  margin-top: 0;
+}
+
+/* Prob list */
+.prob-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.prob-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed rgba(15, 23, 42, 0.03);
+}
+.prob-list li strong {
+  text-transform: capitalize;
+}
+
+/* Small helpers */
+.small {
+  color: var(--muted);
+  font-size: 13px;
+}
+.center {
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 720px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  #preview img {
+    max-width: 160px;
+    max-height: 160px;
+  }
+}
+
+.center-button {
+  text-align: center;
+}
+.center-button .btn {
+  display: inline-block;
+  margin: 0 auto;
+}

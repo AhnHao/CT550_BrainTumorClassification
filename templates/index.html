@@ -1,0 +1,103 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Brain Tumor Classifier</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card header">
+        <div>
+          <h1>Brain Tumor Classification</h1>
+          <p>
+            Upload ảnh MRI và chọn mô hình để dự đoán. Hệ thống hỗ trợ ResNet50
+            & VGG19.
+          </p>
+        </div>
+        <div class="small">Models: resnet50.h5 • vgg19.h5</div>
+      </div>
+
+      <div class="card">
+        <form method="post" enctype="multipart/form-data" id="uploadForm">
+          <div class="form-row">
+            <label for="image">Ảnh MRI</label>
+            <div class="form-controls">
+              <div class="file-input">
+                <label class="btn" for="image">Chọn ảnh</label>
+                <input
+                  type="file"
+                  name="image"
+                  id="image"
+                  accept="image/*"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn">Dự đoán</button>
+              <button type="button" id="clearBtn" class="btn secondary">
+                Xóa
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="model">Chọn mô hình</label>
+            <div class="form-controls">
+              <select id="model" name="model" class="select" required>
+                <option value="resnet50" selected>ResNet50</option>
+                <option value="vgg19">VGG19</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="preview" style="display: none">
+            <div>
+              <p class="small">Xem trước:</p>
+              <img id="preview-img" src="#" alt="preview" />
+            </div>
+            <div class="small" style="max-width: 520px">
+              <p>
+                <strong>Lưu ý:</strong> Ảnh sẽ được tiền xử lý (resize →
+                224×224) trước khi dự đoán.
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <footer class="card small center">
+        © Dự án phân loại khối u não — Chạy trên server cục bộ. Đặt file model
+        vào cùng thư mục ứng dụng.
+      </footer>
+    </div>
+
+    <script>
+      const input = document.getElementById("image");
+      const preview = document.getElementById("preview");
+      const previewImg = document.getElementById("preview-img");
+      const clearBtn = document.getElementById("clearBtn");
+
+      input.onchange = (evt) => {
+        const [file] = input.files;
+        if (file) {
+          preview.style.display = "flex";
+          previewImg.src = URL.createObjectURL(file);
+        } else {
+          preview.style.display = "none";
+          previewImg.src = "#";
+        }
+      };
+
+      clearBtn.onclick = () => {
+        input.value = "";
+        preview.style.display = "none";
+        previewImg.src = "#";
+      };
+    </script>
+  </body>
+</html>

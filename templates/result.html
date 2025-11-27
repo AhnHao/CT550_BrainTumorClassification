@@ -1,0 +1,83 @@
+<!-- templates/result.html (no chart, embedded image, centered button) -->
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <title>Kết quả dự đoán</title>
+    <link
+      href="{{ url_for('static', filename='styles.css') }}"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card header">
+        <div>
+          <h1>Kết quả dự đoán</h1>
+          <p class="small">
+            Mô hình: <strong>{{ model_name | upper }}</strong> — Thời gian:
+            <strong>{{ time_elapsed }}</strong>
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row">
+          <div class="col">
+            <h3 class="small">Ảnh dự đoán</h3>
+            <div class="result-card center">
+              <img
+                src="{{ image_data }}"
+                alt="Uploaded Image"
+                style="
+                  max-width: 100%;
+                  border-radius: 8px;
+                  border: 1px solid rgba(15, 23, 42, 0.04);
+                "
+              />
+            </div>
+          </div>
+
+          <div class="col">
+            <h3 class="small">Kết quả dự đoán</h3>
+            <div class="result-card" style="margin-bottom: 16px; padding: 12px">
+              {% set best = results[0] %}
+              <p style="font-size: 20px; margin: 0">
+                <strong>{{ best[0] | upper }}</strong>
+              </p>
+              <p style="margin-top: 4px; font-size: 16px">
+                Độ tin cậy: <strong>{{ '%.2f'|format(best[1] * 100) }}%</strong>
+              </p>
+            </div>
+
+            <h3 class="small">Xếp hạng dự đoán</h3>
+            <div class="result-card">
+              <ul class="prob-list">
+                {% for label, prob in results %}
+                <li>
+                  <span><strong>{{ label }}</strong></span>
+                  <span>{{ '%.2f'|format(prob*100) }}%</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <div style="margin-top: 12px" class="small">
+              <p>
+                Lưu ý: Kết quả là phân loại tự động, cần bác sĩ chuyên môn xác
+                nhận.
+              </p>
+            </div>
+
+            <div class="center-button" style="margin-top: 20px">
+              <a href="{{ url_for('index') }}" class="btn">Thử ảnh khác</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="small center">© Dự án phân loại khối u não</footer>
+    </div>
+  </body>
+</html>
