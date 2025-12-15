@@ -36,6 +36,34 @@
                   border: 1px solid rgba(15, 23, 42, 0.04);
                 "
               />
+              <div style="margin-top: 18px; text-align: center">
+                <button
+                  id="showGradcamBtn"
+                  type="button"
+                  class="btn"
+                  style="margin-bottom: 10px"
+                >
+                  Hiện Grad-CAM
+                </button>
+                <div
+                  id="gradcamContainer"
+                  style="display: none; margin-top: 0; text-align: center"
+                >
+                  <img
+                    src="{{ gradcam_image_data }}"
+                    alt="Grad-CAM"
+                    style="
+                      max-width: 100%;
+                      border-radius: 8px;
+                      border: 1px solid #000;
+                      margin-top: 0;
+                    "
+                  />
+                  <p class="small" style="margin-top: 6px">
+                    <strong>Grad-CAM Visualization</strong>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -72,6 +100,7 @@
 
             <div class="center-button" style="margin-top: 20px">
               <a href="{{ url_for('index') }}" class="btn">Thử ảnh khác</a>
+              <a href="{{ url_for('report') }}" class="btn">In báo cáo</a>
             </div>
           </div>
         </div>
@@ -79,5 +108,22 @@
 
       <footer class="small center">© Dự án phân loại khối u não</footer>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var btn = document.getElementById("showGradcamBtn");
+        var gradcamDiv = document.getElementById("gradcamContainer");
+        if (btn && gradcamDiv) {
+          btn.onclick = function () {
+            gradcamDiv.style.display =
+              gradcamDiv.style.display === "none" ? "block" : "none";
+            btn.textContent =
+              gradcamDiv.style.display === "block"
+                ? "Ẩn Grad-CAM"
+                : "Hiện Grad-CAM";
+          };
+        }
+      });
+    </script>
   </body>
 </html>
