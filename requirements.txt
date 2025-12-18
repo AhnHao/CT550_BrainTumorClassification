@@ -1,6 +1,9 @@
 Flask>=2.0
 tensorflow>=2.9
-Pillow
-numpy
-werkzeug
-matplotlib
+numpy>=1.23
+Pillow>=9.0
+h5py>=3.1
+reportlab>=3.6
+matplotlib>=3.5
+opencv-python-headless>=4.7
+Werkzeug>=2.0
